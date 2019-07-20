@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 
 /**
- * This is a [LinearSnapHelper] tries to show the start or last visible item completely.
+ * This is a [LinearSnapHelper] tries to show the first or last visible item completely.
  */
 class StartSnapHelper : LinearSnapHelper() {
     override fun calculateDistanceToFinalSnap(layoutManager: LayoutManager, targetView: View): IntArray =
