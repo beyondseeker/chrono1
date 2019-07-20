@@ -15,7 +15,7 @@ class StartSnapHelper : LinearSnapHelper() {
         when {
             layoutManager.canScrollHorizontally() -> intArrayOf(distanceToLeft(layoutManager, targetView), 0)
             layoutManager.canScrollVertically() -> intArrayOf(0, distanceToTop(layoutManager, targetView))
-            else -> throw UnsupportedOperationException("Unexpected layoutManager: ${layoutManager.javaClass.name}")
+            else -> throw newException(layoutManager)
         }
 
     override fun findSnapView(layoutManager: LayoutManager): View? {
@@ -68,6 +68,9 @@ class StartSnapHelper : LinearSnapHelper() {
     private fun getOrientationHelper(layoutManager: LinearLayoutManager): OrientationHelper = when {
         layoutManager.canScrollHorizontally() -> horizontalHelper(layoutManager)
         layoutManager.canScrollVertically() -> verticalHelper(layoutManager)
-        else -> throw UnsupportedOperationException("Unexpected layoutManager: ${layoutManager.javaClass.name}")
+        else -> throw newException(layoutManager)
     }
+
+    private fun newException(layoutManager: LayoutManager) =
+        UnsupportedOperationException("Unexpected layoutManager: ${layoutManager.javaClass.name}")
 }
