@@ -52,7 +52,7 @@ class StartSnapHelper : LinearSnapHelper() {
     private fun verticalHelper(layoutManager: LayoutManager): OrientationHelper =
         OrientationHelper.createVerticalHelper(layoutManager)
 
-    // The start of the view including its decoration, margin and padding.
+    // The left of the view including its decoration, margin and padding.
     private fun distanceToLeft(layoutManager: LayoutManager, targetView: View): Int =
         horizontalHelper(layoutManager).run { getDecoratedStart(targetView) - startAfterPadding }
 
