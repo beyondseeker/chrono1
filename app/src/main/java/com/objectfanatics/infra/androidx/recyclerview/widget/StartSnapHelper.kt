@@ -46,31 +46,33 @@ class StartSnapHelper : LinearSnapHelper() {
         }
     }
 
-    private fun horizontalHelper(layoutManager: LayoutManager): OrientationHelper =
-        OrientationHelper.createHorizontalHelper(layoutManager)
+    companion object {
+        private fun horizontalHelper(layoutManager: LayoutManager): OrientationHelper =
+            OrientationHelper.createHorizontalHelper(layoutManager)
 
-    private fun verticalHelper(layoutManager: LayoutManager): OrientationHelper =
-        OrientationHelper.createVerticalHelper(layoutManager)
+        private fun verticalHelper(layoutManager: LayoutManager): OrientationHelper =
+            OrientationHelper.createVerticalHelper(layoutManager)
 
-    // The left of the view including its decoration, margin and padding.
-    private fun distanceToLeft(layoutManager: LayoutManager, targetView: View): Int =
-        horizontalHelper(layoutManager).run { getDecoratedStart(targetView) - startAfterPadding }
+        // The left of the view including its decoration, margin and padding.
+        private fun distanceToLeft(layoutManager: LayoutManager, targetView: View): Int =
+            horizontalHelper(layoutManager).run { getDecoratedStart(targetView) - startAfterPadding }
 
-    // The top of the view including its decoration, margin and padding.
-    private fun distanceToTop(layoutManager: LayoutManager, targetView: View): Int =
-        verticalHelper(layoutManager).run { getDecoratedStart(targetView) - startAfterPadding }
+        // The top of the view including its decoration, margin and padding.
+        private fun distanceToTop(layoutManager: LayoutManager, targetView: View): Int =
+            verticalHelper(layoutManager).run { getDecoratedStart(targetView) - startAfterPadding }
 
-    private fun isEmpty(firstItemPos: Int) = firstItemPos == NO_POSITION
+        private fun isEmpty(firstItemPos: Int) = firstItemPos == NO_POSITION
 
-    private fun LinearLayoutManager.isLastItemCompletelyVisible() =
-        findLastCompletelyVisibleItemPosition() == itemCount - 1
+        private fun LinearLayoutManager.isLastItemCompletelyVisible() =
+            findLastCompletelyVisibleItemPosition() == itemCount - 1
 
-    private fun getOrientationHelper(layoutManager: LinearLayoutManager): OrientationHelper = when {
-        layoutManager.canScrollHorizontally() -> horizontalHelper(layoutManager)
-        layoutManager.canScrollVertically() -> verticalHelper(layoutManager)
-        else -> throw newException(layoutManager)
+        private fun getOrientationHelper(layoutManager: LinearLayoutManager): OrientationHelper = when {
+            layoutManager.canScrollHorizontally() -> horizontalHelper(layoutManager)
+            layoutManager.canScrollVertically() -> verticalHelper(layoutManager)
+            else -> throw newException(layoutManager)
+        }
+
+        private fun newException(layoutManager: LayoutManager) =
+            UnsupportedOperationException("Unexpected layoutManager: ${layoutManager.javaClass.name}")
     }
-
-    private fun newException(layoutManager: LayoutManager) =
-        UnsupportedOperationException("Unexpected layoutManager: ${layoutManager.javaClass.name}")
 }
