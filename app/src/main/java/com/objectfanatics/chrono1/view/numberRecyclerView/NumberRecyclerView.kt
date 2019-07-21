@@ -17,4 +17,8 @@ abstract class NumberRecyclerView @JvmOverloads constructor(orientation: Int, gr
             repeat(ITEM_NUM) { add(groupFactory()) }
         }
     }
+
+    companion object {
+        private const val ITEM_NUM: Int = 10
+    }
 }
