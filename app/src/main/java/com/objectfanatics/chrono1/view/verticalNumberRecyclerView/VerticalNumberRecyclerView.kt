@@ -2,11 +2,11 @@ package com.objectfanatics.chrono1.view.verticalNumberRecyclerView
 
 import android.content.Context
 import android.util.AttributeSet
-import com.objectfanatics.chrono1.view.numberRecyclerView.NumberRecyclerView
-import com.xwray.groupie.Group
+import androidx.recyclerview.widget.RecyclerView
+import com.objectfanatics.chrono1.view.numberRecyclerView.attach
 
-class VerticalNumberRecyclerView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : NumberRecyclerView(VERTICAL, ::newRecyclerViewItem, context, attrs, defStyleAttr) {
-    companion object {
-        private fun newRecyclerViewItem(): Group = VerticalNumberRecyclerViewItem()
+class VerticalNumberRecyclerView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : RecyclerView(context, attrs, defStyleAttr) {
+    init {
+        attach(VERTICAL) { VerticalNumberRecyclerViewItem() }
     }
 }
